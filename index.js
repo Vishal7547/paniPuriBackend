@@ -18,20 +18,7 @@ export const instance = new Razorpay({
   key_id: process.env.RAZORPAY_API_KEY,
   key_secret: process.env.RAZORPAY_API_SECRET,
 });
-app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true,
-    name: "babapanipuri",
-    cookie: {
-      secure: false,
-      httpOnly: false,
-      sameSite: false,
-      // maxAge: 0,
-    },
-  })
-);
+
 app.use(
   session({
     secret: process.env.SECRET,
