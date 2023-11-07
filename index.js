@@ -36,7 +36,7 @@ app.use(
 app.use(passport.authenticate("session"));
 app.use(passport.initialize());
 app.use(passport.session());
-app.enable("trust proxy");
+
 app.use(
   urlencoded({
     extended: true,
@@ -53,7 +53,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 connectPassport();
 app.get("/", (req, res) => {
-  res.status(200).json({ success: true });
+  res.status(200).json({ success: true, message: "working" });
 });
 
 import user from "./router/user.js";
