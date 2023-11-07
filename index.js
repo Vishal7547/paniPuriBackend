@@ -23,7 +23,7 @@ app.use(
   session({
     secret: process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     name: "babapanipuri",
     cookie: {
       secure: process.env.NODE_ENV === "development" ? false : true,
@@ -33,8 +33,10 @@ app.use(
   })
 );
 
-app.use(cookieParser());
-app.use(express.json());
+app.use(passport.authenticate("session"));
+app.use(passport.initialize());
+app.use(passport.session());
+app.enable("trust proxy");
 app.use(
   urlencoded({
     extended: true,
