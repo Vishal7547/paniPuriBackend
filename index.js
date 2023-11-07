@@ -33,10 +33,6 @@ app.use(
   })
 );
 
-app.use(passport.authenticate("session"));
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use(
   urlencoded({
     extended: true,
@@ -49,8 +45,11 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
+
+app.use(passport.authenticate("session"));
 app.use(passport.initialize());
 app.use(passport.session());
+app.enable("trust proxy");
 connectPassport();
 app.get("/", (req, res) => {
   res.status(200).json({ success: true, message: "working" });
