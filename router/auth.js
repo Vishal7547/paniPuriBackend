@@ -36,9 +36,9 @@ router.get("/logout", (req, res) => {
     }
 
     res.clearCookie("connect.sid", {
-      secure: false,
-      httpOnly: false,
-      sameSite: false,
+      secure: true,
+      httpOnly: true,
+      sameSite: "none",
     });
 
     res.status(200).json({
