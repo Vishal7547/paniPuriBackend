@@ -24,23 +24,21 @@ app.use(
     secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
-    name: "babapanipuri",
     cookie: {
-      secure: process.env.NODE_ENV === "development" ? false : true,
-      httpOnly: process.env.NODE_ENV === "development" ? false : true,
-      sameSite: process.env.NODE_ENV === "development" ? false : "none",
+      secure: false,
+      httpOnly: true,
+      sameSite: false,
     },
   })
 );
-
 app.use(cookieParser());
 app.use(express.json());
-
 app.use(
   urlencoded({
     extended: true,
   })
 );
+
 app.use(
   cors({
     credentials: true,

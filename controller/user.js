@@ -3,6 +3,7 @@ import { Order } from "../model/order.js";
 
 export const handleMe = (req, res) => {
   console.log(req.user);
+  console.log(req.cookies["connect.sid"]);
   res.status(200).json({ success: true, user: req.user });
 };
 export const getAdminUser = async (req, res) => {

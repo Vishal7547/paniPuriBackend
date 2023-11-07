@@ -1,5 +1,5 @@
 export const isLoggedIn = (req, res, next) => {
-  const token = req.cookies["babapanipuri"];
+  const token = req.cookies["connect.sid"];
   console.log("token", token);
   if (!token) {
     return res.status(401).json({

@@ -15,6 +15,7 @@ router.get(
     // failureRedirect: "/google/fail",
     successRedirect: "http://localhost:3000",
     // successRedirect: "/api/v1/me",
+    // successRedirect: "/",
   })
 );
 
@@ -34,10 +35,10 @@ router.get("/logout", (req, res) => {
       });
     }
 
-    res.clearCookie("babapanipuri", {
-      secure: process.env.NODE_ENV === "development" ? false : true,
-      httpOnly: process.env.NODE_ENV === "development" ? false : true,
-      sameSite: process.env.NODE_ENV === "development" ? false : "none",
+    res.clearCookie("connect.sid", {
+      secure: false,
+      httpOnly: false,
+      sameSite: false,
     });
 
     res.status(200).json({
