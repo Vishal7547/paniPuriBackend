@@ -12,6 +12,9 @@ const app = express();
 dotenv.config({
   path: "./config/config.env",
 });
+app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 connectDB();
 export const instance = new Razorpay({
@@ -32,17 +35,15 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(express.json());
-app.use(
-  urlencoded({
-    extended: true,
-  })
-);
 
 app.use(
   cors({
     credentials: true,
     origin: "https://burger-wala-eight.vercel.app",
+    headers: {
+      "Access-Control-Allow-Origin": "https://burger-wala-eight.vercel.app",
+      "Access-Control-Allow-Credentials": true,
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
