@@ -13,7 +13,7 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     // failureRedirect: "/google/fail",
-    successRedirect: "https://burger-wala-eight.vercel.app/",
+    successRedirect: "https://burger-wala-eight.vercel.app",
     // successRedirect: "/api/v1/me",
     // successRedirect: "/",
   })
