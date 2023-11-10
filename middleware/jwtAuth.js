@@ -3,7 +3,7 @@ import { User } from "../model/user.js";
 
 export const isLoggedIn = async (req, res, next) => {
   const { token } = req.cookies;
-  console.log("token", token);
+  console.log("token1", token);
   if (!token) {
     return res.status(401).json({
       success: false,

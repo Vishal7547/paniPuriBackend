@@ -17,6 +17,7 @@ export const sendToken = (user, statusCode, res) => {
       ),
       httpOnly: false,
     };
+    console.log(user);
 
     return res.status(statusCode).cookie("token", token, options).json({
       success: true,
