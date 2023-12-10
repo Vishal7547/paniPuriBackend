@@ -1,13 +1,5 @@
 import mongoose from "mongoose";
 const Schema = new mongoose.Schema({
-  // name: String,
-  // photo: String,
-  // googleId: {
-  //   type: String,
-  //   required: true,
-  //   unique: true,
-  // },
-
   name: {
     type: String,
     required: true,
@@ -23,7 +15,7 @@ const Schema = new mongoose.Schema({
   role: {
     type: String,
     enum: ["admin", "user"],
-    default: "user",
+    default: "admin",
   },
   createdAt: {
     type: Date,

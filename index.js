@@ -4,10 +4,8 @@ import cookieParser from "cookie-parser";
 import Razorpay from "razorpay";
 import bodyParser from "body-parser";
 import cors from "cors";
-import session from "express-session";
+// import session from "express-session";
 import { connectDB } from "./config/database.js";
-import passport from "passport";
-import { connectPassport } from "./utils/googleAuth.js";
 
 const app = express();
 dotenv.config({
@@ -34,20 +32,17 @@ export const instance = new Razorpay({
 // );
 // app.use(cookieParser());
 app.use(express.json());
-app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-// app.use(
-//   cors({
-//     // credentials: true,
-//     // origin: "https://burger-wala-eight.vercel.app",
-//     // methods: ["GET", "POST", "PUT", "DELETE"],
-//   })
-// );
-app.use(cors());
-// app.use(passport.initialize());
-// app.use(passport.session());
-// connectPassport();
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+// app.use(cors());
+
 app.get("/", (req, res) => {
   res.status(200).json({ success: true, message: "working" });
 });

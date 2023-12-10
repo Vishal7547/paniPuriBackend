@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
     });
   }
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email, password });
 
   if (!user) {
     return res.status(401).json({
@@ -66,15 +66,22 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
-  // Logout User
-  res.cookie("token", null, {
-    expires: new Date(Date.now()),
-    httpOnly: true,
-  });
-
-  res.status(200).json({
-    success: true,
-    message: "Logged Out",
-  });
+  try {
+    res
+      .status(200)
+      .cookie("token", null, {
+        expires: new Date(Date.now()),
+        httpOnly: true,
+      })
+      .json({
+        success: true,
+        message: "Logged Out Successfully",
+      });
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
 });
 export default router;

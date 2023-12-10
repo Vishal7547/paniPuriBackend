@@ -12,19 +12,22 @@ export const isLoggedIn = async (req, res, next) => {
   }
   try {
     const decodedData = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = await User.findById(decodedData._doc._id);
+    const user = await User.findById(decodedData._id);
+    req.user = user;
+    next();
   } catch (e) {
     return res.status(501).json({
       success: false,
       message: "Internal server error",
     });
   }
-  next();
 };
 
 export const isAdmin = (...roles) => {
   return (req, res, next) => {
+    console.log(req);
     if (!roles.includes(req.user.role)) {
+      console.log("user", req.user.role);
       return res.status(403).json({
         success: false,
         message: `Role: ${req.user.role} is not allowed to access this resouce `,

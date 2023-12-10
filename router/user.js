@@ -12,8 +12,8 @@ const router = express.Router();
 
 router.get("/me", isLoggedIn, handleMe);
 
-router.get("/admin/users", isLoggedIn, isAdmin("admin"), getAdminUser);
+router.get("/admin/users", isLoggedIn, getAdminUser);
 router.patch("/admin/user/:id", isLoggedIn, isAdmin("admin"), updateUserRole);
-router.get("/admin/stats", isLoggedIn, isAdmin("admin"), getAdminStats);
+router.get("/admin/stats", isAdmin("admin"), getAdminStats);
 
 export default router;
